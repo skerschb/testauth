@@ -84,7 +84,7 @@ class Demo extends React.Component {
     //    documents: response,
     //    currentDetails: [],
     //  })
-    });
+    //});
   }
 
 
