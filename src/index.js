@@ -79,11 +79,11 @@ class Demo extends React.Component {
   componentDidMount() {
     console.log("component Did mount running");
     this.setupStitch();
-    this.stitchClient.callFunction('fetchDocuments', ['ref_data/atlas_api', {path: { $regex: /^\/api\/atlas/}}]).then((response) => {
-      this.setState({
-        documents: response,
-        currentDetails: [],
-      })
+    //this.stitchClient.callFunction('fetchDocuments', ['ref_data/atlas_api', {path: { $regex: /^\/api\/atlas/}}]).then((response) => {
+    //  this.setState({
+    //    documents: response,
+    //    currentDetails: [],
+    //  })
     });
   }
 
