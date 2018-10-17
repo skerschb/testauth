@@ -15,7 +15,7 @@ import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import './index.css';
 
-import { Stitch, RemoteMongoClient, AnonymousCredential } from "mongodb-stitch-browser-sdk";
+import { Stitch, GoogleRedirectCredential, RemoteMongoClient, AnonymousCredential } from "mongodb-stitch-browser-sdk";
 
 
 const classes = theme => ({
@@ -70,9 +70,10 @@ class Demo extends React.Component {
   }
 
   setupStitch() {
-    const appName = 'ref_data-bnbxq';
     const credential = new GoogleRedirectCredential("https://skerschb.github.io/testauth/")
-    Stitch.defaultAppClient.auth.loginWithRedirect(credential);
+    const appName = 'ref_data-bnbxq';
+    this.stitchClient = Stitch.hasAppClient(appName) ? Stitch.defaultAppClient : Stitch.initializeDefaultAppClient(appName);
+    this.stitchClient.auth.loginWithRedirect(credential);
   }
 
   componentDidMount() {
