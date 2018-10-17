@@ -17,6 +17,19 @@ import './index.css';
 
 import { Stitch, GoogleRedirectCredential, RemoteMongoClient, AnonymousCredential } from "mongodb-stitch-browser-sdk";
 
+let stitchClient;
+let credential;
+
+export const authenticate = () => {
+     if (!credential) {
+        credential = new GoogleRedirectCredential();
+        const appName = 'authentication_test-htbrq';
+        stitchClient = Stitch.hasAppClient(appName) ? Stitch.defaultAppClient : Stitch.initializeDefaultAppClient(appName);
+        stitchClient.auth.loginWithRedirect(credential);
+      }
+};
+
+
 
 const classes = theme => ({
   layout: {
@@ -58,6 +71,7 @@ class Demo extends React.Component {
     this.state = {email: ''};
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    //this.setupStitch();
   }
 
   handleChange(event) {
@@ -69,22 +83,8 @@ class Demo extends React.Component {
     this.setState({validate: true});
   }
 
-  setupStitch() {
-    const credential = new GoogleRedirectCredential("https://skerschb.github.io/testauth/")
-    const appName = 'ref_data-bnbxq';
-    this.stitchClient = Stitch.hasAppClient(appName) ? Stitch.defaultAppClient : Stitch.initializeDefaultAppClient(appName);
-    this.stitchClient.auth.loginWithRedirect(credential);
-  }
-
   componentDidMount() {
     console.log("component Did mount running");
-    this.setupStitch();
-    //this.stitchClient.callFunction('fetchDocuments', ['ref_data/atlas_api', {path: { $regex: /^\/api\/atlas/}}]).then((response) => {
-    //  this.setState({
-    //    documents: response,
-    //    currentDetails: [],
-    //  })
-    //});
   }
 
 
@@ -156,8 +156,12 @@ class Demo extends React.Component {
 }
 
 // ========================================
+  authenticate();
 
-  ReactDOM.render(
+  if (credential!==undefined) {
+    console.log("credential happened");
+    ReactDOM.render(
   <Demo />,
   document.getElementById('root')
 );
+  }
