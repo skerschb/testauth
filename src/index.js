@@ -44,9 +44,9 @@ class Demo extends React.Component {
       Stitch.defaultAppClient.auth.loginWithRedirect(credential);
     } else {
        console.log("stitch client logged in");
-       console.log(stitchClient.auth.user);
+       console.log(stitchClient.auth.user.profile);
        this.setState({
-          "user": stitchClient.auth.user, 
+          "user": stitchClient.auth.user.profile, 
        });
     }
 
