@@ -37,14 +37,16 @@ class Demo extends React.Component {
     if (stitchClient.auth.hasRedirectResult()) {
         stitchClient.auth.handleRedirectResult().then(user => {
         console.log(user);
-        this.setState({
-          "user": user, 
-        });
     })}
 
     if (!stitchClient.auth.isLoggedIn) {
       const credential = new GoogleRedirectCredential();
       Stitch.defaultAppClient.auth.loginWithRedirect(credential);
+    } else {
+       console.log(stitchClient.auth.user);
+       this.setState({
+          "user": stitchClient.auth.user, 
+       });
     }
 
   }
