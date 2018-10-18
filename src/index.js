@@ -19,23 +19,22 @@ import { Stitch, GoogleRedirectCredential, RemoteMongoClient, AnonymousCredentia
 
 
 
-//export const authenticate = () => {
-    if (stitchClient === undefined ||
-        !stitchClient.auth.isLoggedIn) {
-        console.log("stitch client has no logged in creds");
-        console.log(stitchClient);
-        const credential = new GoogleRedirectCredential();
-        const appName = 'authentication_test-htbrq';
-        const stitchClient = Stitch.hasAppClient(appName) ? Stitch.defaultAppClient : Stitch.initializeDefaultAppClient(appName);
-        stitchClient.auth.loginWithRedirect(credential);
-      }
+export const authenticate = () => {
+
     if (stitchClient.auth.hasRedirectResult()) {
         console.log("redirect has result");
         stitchClient.auth.handleRedirectResult().then(user => {
             console.log(user);
         });
     }
-//};
+    if (!stitchClient.auth.isLoggedIn) {
+        console.log("stitch client has no logged in creds");
+        console.log(stitchClient);
+        const credential = new GoogleRedirectCredential();
+        Stitch.defaultAppClient.auth.loginWithRedirect(credential);
+      }
+    
+};
 
 const classes = theme => ({
   layout: {
@@ -168,12 +167,10 @@ class Demo extends React.Component {
 }
 
 // ========================================
-  authenticate();
+authenticate();
 
-  if (credential!==undefined) {
-    console.log("credential happened");
-    ReactDOM.render(
+ 
+ReactDOM.render(
   <Demo />,
   document.getElementById('root')
 );
-  }
