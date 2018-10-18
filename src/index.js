@@ -24,6 +24,7 @@ export const authenticate = () => {
     if (stitchClient === undefined ||
         !stitchClient.auth.isLoggedIn) {
         credential = new GoogleRedirectCredential();
+        debugger;
         const appName = 'authentication_test-htbrq';
         stitchClient = Stitch.hasAppClient(appName) ? Stitch.defaultAppClient : Stitch.initializeDefaultAppClient(appName);
         stitchClient.auth.loginWithRedirect(credential);
