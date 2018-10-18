@@ -10,19 +10,7 @@ class Demo extends React.Component {
   constructor(props) {
     console.log("call constructor");
     super(props);
-    this.state = {email: ''};
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
     this.setupStitch();
-  }
-
-  handleChange(event) {
-     this.setState({email: event.target.value});
-  }
-
-  handleSubmit(event) {
-    console.log("handle submit");
-    this.setState({validate: true});
   }
 
   componentDidMount() {
@@ -49,17 +37,12 @@ class Demo extends React.Component {
           "user": stitchClient.auth.user.profile, 
        });
     }
+    console.log(this.state);
 
   }
-
 
   componentDidUpdate() {
-    console.log("Parameters component updated");
-  }
-
-  set(value) {
-    this.setState({"hello":"duh"});
-    console.log(this.state);
+    console.log("component updated");
   }
 
   render() {
