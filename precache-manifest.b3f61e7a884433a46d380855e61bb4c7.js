@@ -4,19 +4,19 @@ self.__precacheManifest = [
     "url": "/testauth/static/js/runtime~main.a03b0da1.js"
   },
   {
-    "revision": "65e0b45b62014793815b",
-    "url": "/testauth/static/js/main.65e0b45b.chunk.js"
+    "revision": "3430e1dd9f20c49ebb8b",
+    "url": "/testauth/static/js/main.3430e1dd.chunk.js"
   },
   {
     "revision": "497eb8b3a1524e8e6f0e",
     "url": "/testauth/static/js/1.497eb8b3.chunk.js"
   },
   {
-    "revision": "65e0b45b62014793815b",
+    "revision": "3430e1dd9f20c49ebb8b",
     "url": "/testauth/static/css/main.c1785159.chunk.css"
   },
   {
-    "revision": "0ba14503682c0dee39b35fc3f35af10f",
+    "revision": "15d8a5414f67d98649455fd53fbcd872",
     "url": "/testauth/index.html"
   }
 ];
