@@ -17,25 +17,6 @@ import './index.css';
 
 import { Stitch, GoogleRedirectCredential, RemoteMongoClient, AnonymousCredential } from "mongodb-stitch-browser-sdk";
 
-
-
-export const authenticate = () => {
-
-    if (stitchClient.auth.hasRedirectResult()) {
-        console.log("redirect has result");
-        stitchClient.auth.handleRedirectResult().then(user => {
-            console.log(user);
-        });
-    }
-    if (!stitchClient.auth.isLoggedIn) {
-        console.log("stitch client has no logged in creds");
-        console.log(stitchClient);
-        const credential = new GoogleRedirectCredential();
-        Stitch.defaultAppClient.auth.loginWithRedirect(credential);
-      }
-    
-};
-
 const classes = theme => ({
   layout: {
     display: 'block', // Fix IE11 issue.
@@ -93,9 +74,16 @@ class Demo extends React.Component {
   }
   
   setupStitch() {
-
-
-
+    const appName = 'authentication_test-htbrq';
+    const stitchClient = Stitch.hasAppClient(appName) ? Stitch.defaultAppClient : Stitch.initializeDefaultAppClient(appName);
+    if (stitchClient.auth.hasRedirectResult()) {
+        stitchClient.auth.handleRedirectResult().then(user => {
+        console.log(user);
+    })}
+    if (!stitchClient.auth.isLoggedIn) {
+      const credential = new GoogleRedirectCredential();
+      Stitch.defaultAppClient.auth.loginWithRedirect(credential);
+    }
   }
 
 
@@ -167,9 +155,7 @@ class Demo extends React.Component {
 }
 
 // ========================================
-authenticate();
-
- 
+   
 ReactDOM.render(
   <Demo />,
   document.getElementById('root')
