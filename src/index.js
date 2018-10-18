@@ -10,10 +10,10 @@ class Demo extends React.Component {
   constructor(props) {
     console.log("call constructor");
     super(props);
-    this.setupStitch();
   }
 
   componentDidMount() {
+    this.setupStitch();
     console.log("component Did mount running");
   }
 
@@ -37,8 +37,6 @@ class Demo extends React.Component {
           "user": stitchClient.auth.user.profile, 
        });
     }
-    console.log(this.state);
-
   }
 
   componentDidUpdate() {
