@@ -74,6 +74,7 @@ class Demo extends React.Component {
   }
   
   setupStitch() {
+    console.log("setup stitch");
     const appName = 'authentication_test-htbrq';
     const stitchClient = Stitch.hasAppClient(appName) ? Stitch.defaultAppClient : Stitch.initializeDefaultAppClient(appName);
     if (stitchClient.auth.hasRedirectResult()) {
