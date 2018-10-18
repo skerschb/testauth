@@ -36,6 +36,7 @@ class Demo extends React.Component {
     
     if (stitchClient.auth.hasRedirectResult()) {
         stitchClient.auth.handleRedirectResult().then(user => {
+        console.log(user);
         this.setState({
           "user": user, 
         });
