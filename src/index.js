@@ -17,18 +17,17 @@ import './index.css';
 
 import { Stitch, GoogleRedirectCredential, RemoteMongoClient, AnonymousCredential } from "mongodb-stitch-browser-sdk";
 
-let stitchClient;
-let credential;
 
-export const authenticate = () => {
+
+//export const authenticate = () => {
     console.log(stitchClient);
     if (stitchClient === undefined ||
         !stitchClient.auth.isLoggedIn) {
         console.log("stitch client has no logged in creds");
         console.log(stitchClient);
-        credential = new GoogleRedirectCredential();
+        const credential = new GoogleRedirectCredential();
         const appName = 'authentication_test-htbrq';
-        stitchClient = Stitch.hasAppClient(appName) ? Stitch.defaultAppClient : Stitch.initializeDefaultAppClient(appName);
+        const stitchClient = Stitch.hasAppClient(appName) ? Stitch.defaultAppClient : Stitch.initializeDefaultAppClient(appName);
         stitchClient.auth.loginWithRedirect(credential);
       }
     if (stitchClient.auth.hasRedirectResult()) {
@@ -37,7 +36,7 @@ export const authenticate = () => {
             console.log(user);
         });
     }
-};
+//};
 
 const classes = theme => ({
   layout: {
