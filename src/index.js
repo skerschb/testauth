@@ -32,10 +32,11 @@ export const authenticate = () => {
         stitchClient.auth.loginWithRedirect(credential);
       }
     if (stitchClient.auth.hasRedirectResult()) {
+        console.log("redirect has result");
         stitchClient.auth.handleRedirectResult().then(user => {
             console.log(user);
         });
-      }
+    }
 };
 
 const classes = theme => ({
@@ -92,6 +93,12 @@ class Demo extends React.Component {
 
   componentDidMount() {
     console.log("component Did mount running");
+  }
+  
+  setupStitch() {
+
+
+
   }
 
 
