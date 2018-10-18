@@ -30,7 +30,7 @@ class Demo extends React.Component {
   }
 
   setupStitch() {
-    console.log("setup stitch");
+    console.log("setup stitch latest");
     const appName = 'authentication_test-htbrq';
     const stitchClient = Stitch.hasAppClient(appName) ? Stitch.defaultAppClient : Stitch.initializeDefaultAppClient(appName);
     
@@ -43,6 +43,7 @@ class Demo extends React.Component {
       const credential = new GoogleRedirectCredential();
       Stitch.defaultAppClient.auth.loginWithRedirect(credential);
     } else {
+       console.log("stitch client logged in");
        console.log(stitchClient.auth.user);
        this.setState({
           "user": stitchClient.auth.user, 
