@@ -21,10 +21,12 @@ let stitchClient;
 let credential;
 
 export const authenticate = () => {
+    console.log(stitchClient);
     if (stitchClient === undefined ||
         !stitchClient.auth.isLoggedIn) {
+        console.log("stitch client has no logged in creds");
+        console.log(stitchClient);
         credential = new GoogleRedirectCredential();
-        debugger;
         const appName = 'authentication_test-htbrq';
         stitchClient = Stitch.hasAppClient(appName) ? Stitch.defaultAppClient : Stitch.initializeDefaultAppClient(appName);
         stitchClient.auth.loginWithRedirect(credential);
