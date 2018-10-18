@@ -57,7 +57,7 @@ class Demo extends React.Component {
     this.state = {email: ''};
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    //this.setupStitch();
+    this.setupStitch();
   }
 
   handleChange(event) {
