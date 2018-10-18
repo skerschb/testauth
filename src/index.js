@@ -18,11 +18,12 @@ import './index.css';
 import { Stitch, GoogleRedirectCredential, RemoteMongoClient, AnonymousCredential } from "mongodb-stitch-browser-sdk";
 
 let stitchClient;
+let credential;
 
 export const authenticate = () => {
     if (stitchClient === undefined ||
         !stitchClient.auth.isLoggedIn) {
-        const credential = new GoogleRedirectCredential();
+        credential = new GoogleRedirectCredential();
         const appName = 'authentication_test-htbrq';
         stitchClient = Stitch.hasAppClient(appName) ? Stitch.defaultAppClient : Stitch.initializeDefaultAppClient(appName);
         stitchClient.auth.loginWithRedirect(credential);
