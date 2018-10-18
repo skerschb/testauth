@@ -20,7 +20,6 @@ import { Stitch, GoogleRedirectCredential, RemoteMongoClient, AnonymousCredentia
 
 
 //export const authenticate = () => {
-    console.log(stitchClient);
     if (stitchClient === undefined ||
         !stitchClient.auth.isLoggedIn) {
         console.log("stitch client has no logged in creds");
