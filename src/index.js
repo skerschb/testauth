@@ -4,7 +4,26 @@ import './index.css';
 
 import { Stitch, GoogleRedirectCredential } from "mongodb-stitch-browser-sdk";
 
+class User extends React.Component {
 
+  constructor(props) {
+    console.log("call constructor");
+    super(props);
+  }
+
+  componentDidUpdate() {
+    console.log("Formatted component updated");
+  }
+
+
+  render() {
+    console.log("render");
+    if (this.props.value===null) return;
+    return <div className="formatted">
+            <pre className="pre">{this.props.value.data}</pre>
+            </div>
+  }
+}
 class Demo extends React.Component {
 
   constructor(props) {
@@ -61,9 +80,7 @@ class Demo extends React.Component {
   render() {
 
     return (
-      <div className="user">
-         {this.getUser().data.name}
-      </div>
+      <User value={this.state.user[0]}/>
     )
   }
 }
