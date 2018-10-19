@@ -38,6 +38,7 @@ class Demo extends React.Component {
        console.log(stitchClient.auth.user.profile);
        var userState = [];
        userState[0] = stitchClient.auth.user.profile;
+       console.log(userState);
        this.setState({
           user: userState,
        });
