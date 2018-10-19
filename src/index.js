@@ -62,7 +62,7 @@ class Demo extends React.Component {
 
     return (
       <div className="user">
-         {this.getUser()}
+         {this.getUser().data.name}
       </div>
     )
   }
