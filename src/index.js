@@ -45,6 +45,13 @@ class Demo extends React.Component {
     }
   }
 
+  getUser() {
+    if (this.state.user === []) {
+      return {};
+    }
+    return this.state.user;
+  }
+
   componentDidUpdate() {
     console.log("component updated");
   }
@@ -53,7 +60,7 @@ class Demo extends React.Component {
 
     return (
       <div className="user">
-         <pre>{this.state.user[0]}</pre>
+         {this.getUser()}
       </div>
     )
   }
