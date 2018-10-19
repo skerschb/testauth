@@ -18,7 +18,7 @@ class User extends React.Component {
 
   render() {
     console.log("render");
-    if (this.props.value===null) return;
+    if (this.props.value===undefined) return;
     return <div className="formatted">
             <pre className="pre">{this.props.value.data}</pre>
             </div>
