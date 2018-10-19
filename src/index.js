@@ -37,7 +37,7 @@ class Demo extends React.Component {
        console.log("stitch client logged in");
        console.log(stitchClient.auth.user.profile);
        this.setState({
-          user: stitchClient.auth.user.profile, 
+          user[0]: stitchClient.auth.user.profile, 
        });
     }
   }
@@ -50,7 +50,7 @@ class Demo extends React.Component {
 
     return (
       <div className="user">
-         <pre>{this.state.user}</pre>
+         <pre>{this.state.user[0]}</pre>
       </div>
     )
   }
