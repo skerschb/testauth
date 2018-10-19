@@ -78,7 +78,9 @@ class Demo extends React.Component {
   }
 
   render() {
-
+    if (this.state.user[0] === undefined) {
+      return null;
+    }
     return (
       <User value={this.state.user[0]}/>
     )
