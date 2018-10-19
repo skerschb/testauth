@@ -20,7 +20,7 @@ class User extends React.Component {
     console.log("render");
     if (this.props.value===undefined) return null;
     return <div className="formatted">
-            <pre className="pre">{this.props.value.data}</pre>
+            <pre className="pre">{this.props.value.data.name}</pre>
             </div>
   }
 }
