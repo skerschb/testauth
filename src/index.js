@@ -3,7 +3,7 @@
 
   import { Stitch, GoogleRedirectCredential } from "mongodb-stitch-browser-sdk";
 
-  //display user information
+  //display google auth user information
   class User extends React.Component {
 
     constructor(props) {
