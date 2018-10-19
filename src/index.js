@@ -1,97 +1,93 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
+  import React from 'react';
+  import ReactDOM from 'react-dom';
 
-import { Stitch, GoogleRedirectCredential } from "mongodb-stitch-browser-sdk";
+  import { Stitch, GoogleRedirectCredential } from "mongodb-stitch-browser-sdk";
 
-class User extends React.Component {
+  /** display user information **/
+  class User extends React.Component {
 
-  constructor(props) {
-    console.log("call constructor");
-    super(props);
-  }
+    constructor(props) {
+      super(props);
+    }
 
-  componentDidUpdate() {
-    console.log("Formatted component updated");
-  }
-
-
-  render() {
-    console.log("render");
-    if (this.props.value===undefined) return null;
-    return <div className="formatted">
-            <div className="subheading">User Data:</div>
-            Name:
-            <pre className="pre">{this.props.value.data.name}</pre>
-            </div>
-  }
-}
-class Demo extends React.Component {
-
-  constructor(props) {
-    console.log("call constructor");
-    super(props);
-    this.state = { 
-      user: [],
+    render() {
+      if (this.props.value === undefined) return null;
+      
+      return <div>
+              <pre>{this.props.value.data.name}</pre>
+              </div>
     }
   }
 
-  componentDidMount() {
-    this.setupStitch();
-    console.log("component Did mount running");
-  }
+  class Demo extends React.Component {
 
-  setupStitch() {
-    console.log("setup stitch latest");
-    const appName = 'authentication_test-htbrq';
-    const stitchClient = Stitch.hasAppClient(appName) ? Stitch.defaultAppClient : Stitch.initializeDefaultAppClient(appName);
-    
-    if (stitchClient.auth.hasRedirectResult()) {
-        stitchClient.auth.handleRedirectResult().then(user => {
-        console.log(user);
-    })}
+    constructor(props) {
+      super(props);
+      this.state = { 
+        user: [],
+      }
+    }
 
-    if (!stitchClient.auth.isLoggedIn) {
-      const credential = new GoogleRedirectCredential();
-      Stitch.defaultAppClient.auth.loginWithRedirect(credential);
-    } else {
-       console.log("stitch client logged in");
-       console.log(stitchClient.auth.user.profile);
-       var userState = [];
-       userState[0] = stitchClient.auth.user.profile;
-       console.log(userState);
-       this.setState({
+    componentDidMount() {
+      this.setupStitch();
+    }
+
+    setupStitch() {
+      //copy the name of your google-auth enabled stitch application here
+      //the name of the app will typically be the stitch application name
+      //with a "-"" + random string appended
+      const appName = 'authentication_test-htbrq';
+
+      //need a description of how this works as the API method names are a
+      //little unclear
+      const stitchClient = Stitch.hasAppClient(appName) ? Stitch.defaultAppClient : Stitch.initializeDefaultAppClient(appName);
+      
+      //check if this user has already authenticated and we're
+      //here from the redirect. If so, process the redirect.
+      if (stitchClient.auth.hasRedirectResult()) {
+          stitchClient.auth.handleRedirectResult().then.(user => {
+          console.log("processed redirect result");
+      })}
+
+      //manage user authentication state
+      if (!stitchClient.auth.isLoggedIn) {
+        const credential = new GoogleRedirectCredential();
+        Stitch.defaultAppClient.auth.loginWithRedirect(credential);
+      } else {
+        //the stitch client marks this user as logged in, add the user
+        //profile to state so we can view their name on the page
+        var userState = [];
+        userState[0] = stitchClient.auth.user.profile;
+        this.setState({
           user: userState,
-       });
+        });
+      }
+    }
+
+    getUser() {
+      if (this.state.user === []) {
+        return {};
+      }
+      return this.state.user;
+    }
+
+    componentDidUpdate() {
+      console.log("component updated");
+    }
+
+    render() {
+      if (this.state.user[0] === undefined) {
+        return null;
+      }
+      return (
+        <User value={this.state.user[0]}/>
+      )
     }
   }
 
-  getUser() {
-    if (this.state.user === []) {
-      console.log("User is null");
-      return {};
-    }
-    console.log("user is not null");
-    return this.state.user;
-  }
-
-  componentDidUpdate() {
-    console.log("component updated");
-  }
-
-  render() {
-    if (this.state.user[0] === undefined) {
-      return null;
-    }
-    return (
-      <User value={this.state.user[0]}/>
-    )
-  }
-}
-
-// ========================================
-   
-ReactDOM.render(
-  <Demo />,
-  document.getElementById('root')
-);
+  // ========================================
+     
+  ReactDOM.render(
+    <Demo />,
+    document.getElementById('root')
+  );
