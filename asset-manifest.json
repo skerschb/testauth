@@ -1,13 +1,13 @@
 {
   "main.css": "/testauth/static/css/main.c1785159.chunk.css",
-  "main.js": "/testauth/static/js/main.e9f11399.chunk.js",
-  "main.js.map": "/testauth/static/js/main.e9f11399.chunk.js.map",
-  "static/js/1.497eb8b3.chunk.js": "/testauth/static/js/1.497eb8b3.chunk.js",
-  "static/js/1.497eb8b3.chunk.js.map": "/testauth/static/js/1.497eb8b3.chunk.js.map",
+  "main.js": "/testauth/static/js/main.df1948e7.chunk.js",
+  "main.js.map": "/testauth/static/js/main.df1948e7.chunk.js.map",
+  "static/js/1.0420dc15.chunk.js": "/testauth/static/js/1.0420dc15.chunk.js",
+  "static/js/1.0420dc15.chunk.js.map": "/testauth/static/js/1.0420dc15.chunk.js.map",
   "runtime~main.js": "/testauth/static/js/runtime~main.a03b0da1.js",
   "runtime~main.js.map": "/testauth/static/js/runtime~main.a03b0da1.js.map",
   "static/css/main.c1785159.chunk.css.map": "/testauth/static/css/main.c1785159.chunk.css.map",
   "index.html": "/testauth/index.html",
-  "precache-manifest.8d949f346d3b73aba50eb55247478017.js": "/testauth/precache-manifest.8d949f346d3b73aba50eb55247478017.js",
+  "precache-manifest.aed5d299ca23947ea260ca3193f5848d.js": "/testauth/precache-manifest.aed5d299ca23947ea260ca3193f5848d.js",
   "service-worker.js": "/testauth/service-worker.js"
 }
