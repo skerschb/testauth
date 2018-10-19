@@ -50,7 +50,7 @@ class Demo extends React.Component {
       console.log("User is null");
       return {};
     }
-    console.log("user is not null"):
+    console.log("user is not null");
     return this.state.user;
   }
 
