@@ -71,10 +71,6 @@
       return this.state.user;
     }
 
-    componentDidUpdate() {
-      console.log("component updated");
-    }
-
     render() {
       if (this.state.user[0] === undefined) {
         return null;
