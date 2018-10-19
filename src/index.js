@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
-import { Stitch, GoogleRedirectCredential, RemoteMongoClient } from "mongodb-stitch-browser-sdk";
+import { Stitch, GoogleRedirectCredential } from "mongodb-stitch-browser-sdk";
 
 
 class Demo extends React.Component {
@@ -47,8 +47,10 @@ class Demo extends React.Component {
 
   getUser() {
     if (this.state.user === []) {
+      console.log("User is null");
       return {};
     }
+    console.log("user is not null"):
     return this.state.user;
   }
 
