@@ -45,7 +45,7 @@
       //check if this user has already authenticated and we're
       //here from the redirect. If so, process the redirect.
       if (stitchClient.auth.hasRedirectResult()) {
-          stitchClient.auth.handleRedirectResult().then.(user => {
+          stitchClient.auth.handleRedirectResult().then(user => {
           console.log("processed redirect result");
       })}
 
