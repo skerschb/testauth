@@ -4,8 +4,6 @@
   "private": true,
   "homepage": "https://skerschb.github.io/testauth/",
   "dependencies": {
-    "@material-ui/core": "^3.2.2",
-    "@material-ui/icons": "^3.0.1",
     "gh-pages": "^2.0.1",
     "mongodb-stitch-browser-sdk": "^4.0.15-0",
     "react": "^16.5.2",
