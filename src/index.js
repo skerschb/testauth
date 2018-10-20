@@ -1,8 +1,10 @@
   import React from 'react';
   import ReactDOM from 'react-dom';
 
+  //start stitch import
   import { Stitch, GoogleRedirectCredential } from "mongodb-stitch-browser-sdk";
-
+  //end stitch import
+  
   //display google auth user information
   class User extends React.Component {
 
@@ -31,7 +33,8 @@
     componentDidMount() {
       this.setupStitch();
     }
-
+    
+    //start stitch setup
     setupStitch() {
       //copy the name of your google-auth enabled stitch application here
       //the name of the app will typically be the stitch application name
@@ -63,7 +66,7 @@
         });
       }
     }
-
+    //end stitch setup
     getUser() {
       if (this.state.user === []) {
         return {};
