@@ -31,7 +31,8 @@
     componentDidMount() {
       this.setupStitch();
     }
-
+    
+    //start stitch setup
     setupStitch() {
       //copy the name of your google-auth enabled stitch application here
       //the name of the app will typically be the stitch application name
@@ -63,7 +64,7 @@
         });
       }
     }
-
+    //end stitch setup
     getUser() {
       if (this.state.user === []) {
         return {};
