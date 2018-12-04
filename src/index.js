@@ -4,83 +4,61 @@
   //start stitch import
   import { Stitch, GoogleRedirectCredential } from "mongodb-stitch-browser-sdk";
   //end stitch import
-  
-  //display google auth user information
-  class User extends React.Component {
 
-    constructor(props) {
-      super(props);
-    }
+  // Create a component to display google auth user information
+  const User = ({ data: name }) => name && <div><pre>{name}</pre></div>
 
-    render() {
-      if (this.props.value === undefined) return null;
-      
-      return <div>
-              <pre>{this.props.value.data.name}</pre>
-              </div>
-    }
-  }
-
+  // Create the main component
   class Demo extends React.Component {
-
     constructor(props) {
       super(props);
-      this.state = { 
-        user: [],
+      this.state = {
+        currentUser: false
       }
     }
 
-    componentDidMount() {
-      this.setupStitch();
+    async componentDidMount() {
+      await this.setupStitch();
     }
-    
+
     //start stitch setup
-    setupStitch() {
+    async setupStitch() {
       //copy the name of your google-auth enabled stitch application here
       //the name of the app will typically be the stitch application name
       //with a "-"" + random string appended
-      const appName = 'authentication_test-htbrq';
+      const appId = 'authentication_test-htbrq';
 
-      //need a description of how this works as the API method names are a
-      //little unclear
-      const stitchClient = Stitch.hasAppClient(appName) ? Stitch.defaultAppClient : Stitch.initializeDefaultAppClient(appName);
-      
-      //check if this user has already authenticated and we're
-      //here from the redirect. If so, process the redirect.
-      if (stitchClient.auth.hasRedirectResult()) {
-          stitchClient.auth.handleRedirectResult().then(user => {
-          console.log("processed redirect result");
-      })}
+      // Get a client for your Stitch app, or instantiate a new one
+      const client = Stitch.hasAppClient(appId)
+        ? Stitch.getAppClient(appId)
+        : Stitch.initializeAppClient(appId);
 
       //manage user authentication state
-      if (!stitchClient.auth.isLoggedIn) {
-        const credential = new GoogleRedirectCredential();
-        Stitch.defaultAppClient.auth.loginWithRedirect(credential);
+      
+      // Check if this user has already authenticated and we're here
+      // from the redirect. If so, process the redirect to finish login.
+      if (client.auth.hasRedirectResult()) {
+        await client.auth.handleRedirectResult().catch(console.error);
+        console.log("Processed redirect result.")
+      }
+
+      if (client.auth.isLoggedIn) {
+        // The user is logged in. Add their user object to component state.
+        currentUser = client.auth.user;
+        this.setState({ currentUser });
       } else {
-        //the stitch client marks this user as logged in, add the user
-        //profile to state so we can view their name on the page
-        var userState = [];
-        userState[0] = stitchClient.auth.user.profile;
-        this.setState({
-          user: userState,
-        });
+        // The user has not yet authenticated. Begin the Google login flow.
+        const credential = new GoogleRedirectCredential();
+        client.auth.loginWithRedirect(credential);
       }
     }
     //end stitch setup
-    getUser() {
-      if (this.state.user === []) {
-        return {};
-      }
-      return this.state.user;
-    }
 
     render() {
-      if (this.state.user[0] === undefined) {
-        return null;
-      }
-      return (
-        <User value={this.state.user[0]}/>
-      )
+      const { currentUser } = this.state;
+      return !currentUser
+        ? <div>User must authenticate.</div>
+        : <User profile={currentUser.profile}/>
     }
   }
 
