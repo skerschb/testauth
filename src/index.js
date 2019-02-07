@@ -33,7 +33,7 @@
         ? Stitch.getAppClient(appId)
         : Stitch.initializeAppClient(appId);
 
-      //manage user authentication state
+      //manage the user authentication state
       
       // Check if this user has already authenticated and we're here
       // from the redirect. If so, process the redirect to finish login.
