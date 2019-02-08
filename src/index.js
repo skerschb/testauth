@@ -8,7 +8,7 @@
   // Create a component to display google auth user information
   const User = ({ data: name }) => name && <div><pre>{name}</pre></div>
 
-  // Create the main component
+  // Create the main React component
   class Demo extends React.Component {
     constructor(props) {
       super(props);
